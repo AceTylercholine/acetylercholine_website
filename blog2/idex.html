@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Blog | Tyler Short</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+    <style>
+        body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
+        .w3-bar,h1,button {font-family: "Montserrat", sans-serif}
+        
+        /* Blog Feed Layout */
+        .blog-row {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 40px;
+            align-items: flex-start;
+        }
+
+        .blog-media {
+            flex: 0 0 150px;
+        }
+
+        .feature-image {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 8px;
+            background-color: #f0f0f0;
+        }
+
+        .icon-box {
+            width: 150px;
+            height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #e0f2f1; 
+            border-radius: 8px;
+            font-size: 64px;
+            color: #008080;
+        }
+
+        .blog-info {
+            flex: 1;
+        }
+
+        .blog-date {
+            font-size: 0.9em;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .blog-title {
+            margin: 5px 0 10px 0 !important;
+            font-weight: bold;
+            font-size: 1.8em;
+        }
+
+        .blog-title a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.3s;
+        }
+
+        .blog-title a:hover {
+            color: #008080;
+        }
+
+        .blog-description {
+            margin-bottom: 15px;
+            line-height: 1.6;
+            color: #444;
+        }
+
+        .read-more {
+            font-weight: bold;
+            color: #008080;
+            text-decoration: none;
+            font-size: 0.95em;
+        }
+
+        .read-more:hover {
+            text-decoration: underline;
+            color: #005a5a;
+        }
+
+        .blog-divider {
+            border: 0;
+            border-top: 1px solid #eee;
+            margin: 40px 0;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 600px) {
+            .blog-row {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .blog-media {
+                flex: 0 0 auto;
+                width: 100%;
+                display: flex;
+                justify-content: center;
+            }
+            .feature-image, .icon-box {
+                width: 100%;
+                max-width: 300px;
+                height: 200px;
+            }
+        }
+    </style>
+    <link rel="canonical" href="https://www.acetylercholine.com/blog/"/>
+    <meta property="og:title" content="Blog | Tyler Short"/>
+    <meta property="og:url" content="https://www.acetylercholine.com/blog/"/>
+    <meta property="og:site_name" content="AceTylercholine"/>
+    <meta property="og:type" content="website"/>
+    <meta name="keywords" content="Tyler Short, Blog, Neuroscience, PhD, Social Neurobiology, Academia, Imposter Syndrome, Science Communication"/>
+    <meta property="og:image" content="https://www.acetylercholine.com/images/logo.png"/> 
+    <meta property="og:description" content="Thoughts, musings, and reflections from Tyler Short, a Neuroscience PhD student navigating academia and science."/>
+    <meta name="description" content="Thoughts, musings, and reflections from Tyler Short, a Neuroscience PhD student navigating academia and science.">
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/favicon/site.webmanifest">
+</head>
+<body>
+
+<div class="w3-top">
+  <div class="w3-bar w3-teal w3-card w3-left-align w3-large">
+    <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-red" href="javascript:void(0);" onclick="toggleNav()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+    <a href="/" class="w3-bar-item w3-button w3-padding-large w3-hover-white">Home</a>
+    <a href="/about/" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">About Me</a>
+    <a href="/blog/" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-white">Blog</a> 
+  </div>
+
+  <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
+    <a href="/about/" class="w3-bar-item w3-button w3-padding-large">About Me</a>
+    <a href="/blog/" class="w3-bar-item w3-button w3-padding-large">Blog</a> 
+  </div>
+</div>
+
+<header class="w3-container w3-teal w3-center" style="padding:128px 16px">
+  <h1 class="w3-margin w3-jumbo">BLOG</h1>
+  <p class="w3-xlarge">Thoughts, musings, and transparency from the messy path through academia.</p>
+</header>
+
+<div class="w3-row-padding w3-padding-64 w3-container">
+  <div class="w3-content">
+
+    <div class="blog-row">
+      <div class="blog-media">
+        <img src="/images/blog-placeholder.jpg" alt="Post thumbnail" class="feature-image">
+      </div>
+      <div class="blog-info">
+        <span class="blog-date">March 27, 2025</span>
+        <h2 class="blog-title"><a href="/blog/why-are-you-talking-to-me/">Why are You Even Talking to Me?</a></h2>
+        <p class="blog-description">A reflection on the internal voice that questions our right to speak, my journey from academic apathy to a PhD, and why transparency might be more useful than "sage advice."</p>
+        <a href="/blog/why-are-you-talking-to-me/" class="read-more">Read More <i class="fa fa-arrow-right"></i></a>
+      </div>
+    </div>
+
+    <hr class="blog-divider">
+
+    <div class="blog-row">
+      <div class="blog-media">
+        <div class="icon-box">
+          <i class="fa-solid fa-masks-theater"></i>
+        </div>
+      </div>
+      <div class="blog-info">
+        <span class="blog-date">March 27, 2025</span>
+        <h2 class="blog-title"><a href="/blog/space-for-an-imposter/">Space for an Imposter</a></h2>
+        <p class="blog-description">Discussing the strategy of humanizing mentors and peers to combat imposter syndrome, and arguing that even if we are "faking it," there is still value in the attempt.</p>
+        <a href="/blog/space-for-an-imposter/" class="read-more">Read More <i class="fa fa-arrow-right"></i></a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer class="w3-container w3-padding-64 w3-center w3-opacity">
+  <p>Find me on social media (or GitHub)</p>
+  <div class="w3-xlarge w3-padding-16">
+    <a href="https://bsky.app/profile/acetylercholine.bsky.social" target="_blank" class="w3-hover-opacity"><i class="fa-brands fa-bluesky"></i></a>
+    <a href="https://www.linkedin.com/in/acetylercholine" target="_blank" class="w3-hover-opacity"><i class="fa-brands fa-linkedin"></i></a>
+    <a href="https://github.com/AceTylerCholine" target="_blank" class="w3-hover-opacity"><i class="fa-brands fa-github"></i></a>
+    <a href="https://www.instagram.com/acetylercholine" target="_blank" class="w3-hover-opacity"><i class="fa-brands fa-instagram"></i></a>
+    <a href="https://twitter.com/AceTylercholine" target="_blank" class="w3-hover-opacity"><i class="fa-brands fa-x-twitter"></i></a>
+    <a href="https://www.facebook.com/AceTylercholine" target="_blank" class="w3-hover-opacity"><i class="fa-brands fa-facebook"></i></a>
+  </div>
+
+  <p>This site was made with: <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a>, hosted by: <a href="https://github.com/AceTylerCholine/acetylercholine_website" target="_blank">GitHub</a></p>
+  <i><p id="last-updated">Last Updated: </p></i>
+  <br>
+</footer>
+
+<script>
+// Function to toggle the navigation menu on small screens
+function toggleNav() {
+  var x = document.getElementById("navDemo");
+  if (x.className.indexOf("w3-show") === -1) {
+    x.className += " w3-show";
+  } else {
+    x.className = x.className.replace(" w3-show", "");
+  }
+}
+
+// Script for fetching the last updated date from GitHub
+document.addEventListener('DOMContentLoaded', function() {
+    fetch('https://api.github.com/repos/AceTylerCholine/acetylercholine_website/commits')
+        .then(response => response.json())
+        .then(commits => {
+            if (commits && commits.length > 0) {
+                var lastCommitDate = new Date(commits[0].commit.committer.date);
+                var options = { year: 'numeric', month: 'long', day: 'numeric' };
+                var formattedDate = lastCommitDate.toLocaleDateString('en-US', options);
+                document.getElementById('last-updated').innerText += " " + formattedDate;
+            }
+        })
+        .catch(error => {
+             document.getElementById('last-updated').innerText += " Date unavailable";
+        });
+});
+</script>
+
+</body>
+</html>
