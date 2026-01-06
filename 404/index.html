@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head> <title>Page Not Found | Tyler Short</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
+.w3-bar,h1,button {font-family: "Montserrat", sans-serif}
+.fa-user,.fa-coffee {font-size:200px}
+.indent { text-indent: 30px; }
+.carousel {
+    background: #2f4357;
+    margin-top: 20px;
+    }
+.carousel-container {
+    height: 400px; /* Fixed height for carousel container */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    }
+.carousel-item img {
+    max-width: 100%; /* Limit image width to not exceed the container */
+    max-height: 100%; /* Limit image height to not exceed the container */
+    object-fit: contain; /* Ensures the entire image is visible */
+    margin: auto; /* Center the image */
+    }
+</style>
+        <link rel="canonical" href="https://www.acetylercholine.com/about"/>
+        <meta property="og:title" content="Tyler Short: Lover of Neuroscience"/>
+        <meta property="og:url" content="https://www.acetylercholine.com/about"/>
+        <meta property="og:site_name" content="AceTylercholine"/>
+        <meta property="og:type" content="website"/>
+        <meta name="keywords" content="Tyler Short, Neuroscience, Student, PhD, Social Neurobiology, Marmoset, Göttingen, Germany"/> <meta property="og:image" content="https://www.acetylercholine.com/images/logo.png"/>
+        <meta property="og:description" content="About Tyler Short, Neuroscience PhD student studying social valuation in marmosets at the German Primate Center."/> <meta name="description" content="About Tyler Short, Neuroscience PhD student studying social valuation in marmosets at the German Primate Center, Göttingen."> <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/favicon/site.webmanifest">
+    <link rel="mask-icon" href="/favicon/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+</head> <body>
+
+<div class="w3-top">
+  <div class="w3-bar w3-teal w3-card w3-left-align w3-large">
+    <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-red" href="javascript:void(0);" onclick="toggleNav()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+    <a href="/" class="w3-bar-item w3-button w3-padding-large w3-hover-white">Home</a>
+    <a href="/about/" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">About Me</a>
+    <a href="/blog/" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Blog</a>
+  </div>
+
+  <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
+    <a href="/about/" class="w3-bar-item w3-button w3-padding-large">About Me</a>
+    <a href="/blog/" class="w3-bar-item w3-button w3-padding-large">Blog</a>
+  </div>
+</div>
+
+<header class="w3-container w3-teal w3-center" style="padding:128px 16px">
+  <h1 class="w3-margin w3-jumbo">404 - Page Not Found</h1>
+  <p class="w3-xlarge">One of us is an idiot. Sorry if it was me.</p>
+</header>
+
+<div class="w3-container w3-white w3-center" style="padding:40px 16px">
+    <div id="game-wrapper">
+        <div class="choice-container" id="box-container">
+            <div class="choice-box" onclick="makeChoice('food')">
+                <div class="box-content">
+                    <p class="w3-large">Random Food</p>
+                    <p class="points-label">3 Points</p>
+                </div>
+                <div class="emoji-display"></div>
+            </div>
+
+            <div class="choice-box" onclick="makeChoice('animal')">
+                <div class="box-content">
+                    <p class="w3-large">Random Animal</p>
+                    <p class="points-label"><span id="animal-x">?</span> Points</p>
+                </div>
+                <div class="emoji-display"></div>
+            </div>
+        </div>
+
+        <div class="stats-bar">
+            <p>Total Points Accumulated: <span id="total-points">0</span></p>
+            <button class="w3-button w3-black w3-padding-large w3-large w3-margin-top" onclick="showResults()">I'm done. What do I value?</button>
+        </div>
+    </div>
+</div>
+
+<div id="resultsModal" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Your Social Valuation Profile</h5>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p id="profile-text"></p>
+        <hr>
+        <p><strong>Total Points:</strong> <span id="final-points"></span></p>
+        <p><strong>Food Choices:</strong> <span id="final-food"></span></p>
+        <p><strong>Social Choices:</strong> <span id="final-animal"></span></p>
+      </div>
+      <div class="modal-footer">
+        <a href="/" class="btn btn-primary">Take me Home</a>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Keep Foraging</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="w3-container w3-padding-64 w3-center w3-opacity">
+  <p>Find me on social media (or GitHub)</p>
+  <a href="https://bsky.app/profile/acetylercholine.bsky.social" target="_blank"><i class="fa-brands fa-bluesky w3-hover-opacity fa-2x"></i></a>
+  <a href="https://www.linkedin.com/in/acetylercholine" target="_blank"><i class="fa-brands fa-linkedin w3-hover-opacity fa-2x"></i></a>
+  <a href="https://github.com/AceTylerCholine" target="_blank"><i class="fa-brands fa-github w3-hover-opacity fa-2x"></i></a>
+  <a href="https://www.instagram.com/acetylercholine" target="_blank"><i class="fa-brands fa-instagram w3-hover-opacity fa-2x"></i></a>
+  <a href="https://twitter.com/AceTylercholine" target="_blank"><i class="fa-brands fa-x-twitter w3-hover-opacity fa-2x"></i></a>
+  <a href="https://www.facebook.com/AceTylercholine" target="_blank"><i class="fa-brands fa-facebook w3-hover-opacity fa-2x"></i></a>
+  
+  <p>This site was made with resources from: <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a>, hosted by: <a href="https://github.com/AceTylerCholine/acetylercholine_website" target="_blank">GitHub</a>, & deployed by: <a href="https://www.netlify.com/" target="_blank">Netlify</a></p>
+  <i><p id="last-updated">Last Updated: </p></i>
+</footer>
+
+<script>
+let totalPoints = 0;
+let foodCount = 0;
+let animalCount = 0;
+let animalX = 1;
+let animalChoicesWhenLow = 0; // Tracking if they chose animal even when X < 3
+
+const foodEmojis = ['🍎', '🍌', '🍇', '🍒', '🍓', '🍑', '🍍'];
+const animalEmojis = ['🐒', '🦍', '🦧', '🐶', '🦊', '🐱', '🐭'];
+
+function updateX() {
+    animalX = Math.floor(Math.random() * 5) + 1;
+    document.getElementById('animal-x').innerText = animalX;
+}
+
+function makeChoice(type) {
+    const container = document.getElementById('box-container');
+    container.classList.add('disabled');
+    
+    const boxes = document.querySelectorAll('.choice-box');
+    const selectedBox = type === 'food' ? boxes[0] : boxes[1];
+    const content = selectedBox.querySelector('.box-content');
+    const emojiDiv = selectedBox.querySelector('.emoji-display');
+    
+    // Hide all text labels
+    document.querySelectorAll('.box-content').forEach(el => el.style.visibility = 'hidden');
+    
+    // Reveal emoji in the clicked box
+    const list = type === 'food' ? foodEmojis : animalEmojis;
+    const randomEmoji = list[Math.floor(Math.random() * list.length)];
+    emojiDiv.innerText = randomEmoji;
+    emojiDiv.style.display = 'block';
+    
+    // Update Stats
+    if (type === 'food') {
+        totalPoints += 3;
+        foodCount++;
+    } else {
+        totalPoints += animalX;
+        animalCount++;
+        if (animalX < 3) animalChoicesWhenLow++;
+    }
+    document.getElementById('total-points').innerText = totalPoints;
+
+    // Feedback duration
+    setTimeout(() => {
+        emojiDiv.style.display = 'none';
+        document.querySelectorAll('.box-content').forEach(el => el.style.visibility = 'visible');
+        container.classList.remove('disabled');
+        updateX();
+    }, 1500);
+}
+
+function showResults() {
+    let profile = "";
+    if (animalCount === 0 && foodCount === 0) {
+        profile = "You haven't made any choices yet. Are you even a marmoset?";
+    } else if (animalCount > foodCount && animalChoicesWhenLow > 0) {
+        profile = "High Social Valuation: You prioritize social stimuli (animals) even when the caloric payoff is low. A true primate behavior.";
+    } else if (foodCount > animalCount) {
+        profile = "The Optimal Forager: You preferred the consistent reward of food. You play it safe and stay fed.";
+    } else {
+        profile = "The Utility Maximizer: Your choices suggest a balanced valuation of social and non-social rewards.";
+    }
+
+    document.getElementById('profile-text').innerText = profile;
+    document.getElementById('final-points').innerText = totalPoints;
+    document.getElementById('final-food').innerText = foodCount;
+    document.getElementById('final-animal').innerText = animalCount;
+    $('#resultsModal').modal('show');
+}
+
+// Initial X roll
+updateX();
+
+function toggleNav() {
+  var x = document.getElementById("navDemo");
+  if (x.className.indexOf("w3-show") == -1) {
+    x.className += " w3-show";
+  } else { 
+    x.className = x.className.replace(" w3-show", "");
+  }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    fetch('https://api.github.com/repos/AceTylerCholine/acetylercholine_website/commits')
+        .then(response => response.json())
+        .then(commits => {
+            if (commits && commits.length > 0) {
+                var lastCommitDate = new Date(commits[0].commit.committer.date);
+                var options = { year: 'numeric', month: 'long', day: 'numeric' };
+                document.getElementById('last-updated').innerText += " " + lastCommitDate.toLocaleDateString('en-US', options);
+            }
+        })
+        .catch(error => console.log('Error:', error));
+});
+</script>
+
+</body>
+</html>
