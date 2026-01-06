@@ -11,25 +11,58 @@
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
 <style>
-body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
-.w3-bar,h1,button {font-family: "Montserrat", sans-serif}
-.fa-user,.fa-coffee {font-size:200px}
-.indent { text-indent: 30px; }
-.carousel {
-    background: #2f4357;
-    margin-top: 20px;
+    /* Improved Choice Box Styling */
+    .choice-container {
+        max-width: 800px;
+        margin: 20px auto;
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+        flex-wrap: wrap; /* Helps with mobile */
     }
-.carousel-container {
-    height: 400px; /* Fixed height for carousel container */
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    .choice-box {
+        background-color: #f1f1f1; /* Light grey */
+        border: 2px solid #9e9e9e; /* Solid grey border */
+        border-radius: 12px;
+        width: 280px;
+        height: 180px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        user-select: none;
+        text-align: center;
+        padding: 20px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     }
-.carousel-item img {
-    max-width: 100%; /* Limit image width to not exceed the container */
-    max-height: 100%; /* Limit image height to not exceed the container */
-    object-fit: contain; /* Ensures the entire image is visible */
-    margin: auto; /* Center the image */
+    .choice-box:hover { 
+        background-color: #e0e0e0;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+    }
+    .choice-box:active {
+        transform: translateY(1px);
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .choice-box.disabled { 
+        pointer-events: none; 
+        opacity: 0.7; 
+        background-color: #cccccc;
+    }
+    .box-content p {
+        margin: 5px 0;
+        font-weight: bold;
+        color: #333;
+    }
+    .points-label {
+        font-size: 1.4rem;
+        color: #009688; /* Matching your Teal theme */
+    }
+    .emoji-display { 
+        font-size: 4.5rem; 
+        line-height: 1;
     }
 </style>
         <link rel="canonical" href="https://www.acetylercholine.com/about"/>
@@ -69,26 +102,26 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 <div class="w3-container w3-white w3-center" style="padding:40px 16px">
     <div id="game-wrapper">
         <div class="choice-container" id="box-container">
-            <div class="choice-box" onclick="makeChoice('food')">
-                <div class="box-content">
+            <div class="choice-box" id="food-button" onclick="makeChoice('food')">
+                <div class="box-content" id="food-text">
                     <p class="w3-large">Random Food</p>
                     <p class="points-label">3 Points</p>
                 </div>
-                <div class="emoji-display"></div>
+                <div class="emoji-display" id="food-emoji" style="display:none;"></div>
             </div>
 
-            <div class="choice-box" onclick="makeChoice('animal')">
-                <div class="box-content">
+            <div class="choice-box" id="animal-button" onclick="makeChoice('animal')">
+                <div class="box-content" id="animal-text">
                     <p class="w3-large">Random Animal</p>
                     <p class="points-label"><span id="animal-x">?</span> Points</p>
                 </div>
-                <div class="emoji-display"></div>
+                <div class="emoji-display" id="animal-emoji" style="display:none;"></div>
             </div>
         </div>
 
         <div class="stats-bar">
-            <p>Total Points Accumulated: <span id="total-points">0</span></p>
-            <button class="w3-button w3-black w3-padding-large w3-large w3-margin-top" onclick="showResults()">I'm done. What do I value?</button>
+            <p class="w3-xlarge">Total Points: <span id="total-points" class="w3-text-teal">0</span></p>
+            <button class="w3-button w3-black w3-round-large w3-padding-large w3-large w3-margin-top" onclick="showResults()">I'm done. What do I value?</button>
         </div>
     </div>
 </div>
@@ -147,21 +180,25 @@ function makeChoice(type) {
     const container = document.getElementById('box-container');
     container.classList.add('disabled');
     
-    const boxes = document.querySelectorAll('.choice-box');
-    const selectedBox = type === 'food' ? boxes[0] : boxes[1];
-    const content = selectedBox.querySelector('.box-content');
-    const emojiDiv = selectedBox.querySelector('.emoji-display');
+    // Select elements
+    const foodText = document.getElementById('food-text');
+    const animalText = document.getElementById('animal-text');
+    const foodEmoji = document.getElementById('food-emoji');
+    const animalEmoji = document.getElementById('animal-emoji');
     
-    // Hide all text labels
-    document.querySelectorAll('.box-content').forEach(el => el.style.visibility = 'hidden');
+    // Hide all text
+    foodText.style.visibility = 'hidden';
+    animalText.style.visibility = 'hidden';
     
-    // Reveal emoji in the clicked box
-    const list = type === 'food' ? foodEmojis : animalEmojis;
-    const randomEmoji = list[Math.floor(Math.random() * list.length)];
-    emojiDiv.innerText = randomEmoji;
-    emojiDiv.style.display = 'block';
+    // Determine which emoji to show
+    let selectedEmojiDiv = (type === 'food') ? foodEmoji : animalEmoji;
+    let list = (type === 'food') ? foodEmojis : animalEmojis;
+    let randomEmoji = list[Math.floor(Math.random() * list.length)];
     
-    // Update Stats
+    selectedEmojiDiv.innerText = randomEmoji;
+    selectedEmojiDiv.style.display = 'block';
+    
+    // Point Logic
     if (type === 'food') {
         totalPoints += 3;
         foodCount++;
@@ -172,10 +209,12 @@ function makeChoice(type) {
     }
     document.getElementById('total-points').innerText = totalPoints;
 
-    // Feedback duration
     setTimeout(() => {
-        emojiDiv.style.display = 'none';
-        document.querySelectorAll('.box-content').forEach(el => el.style.visibility = 'visible');
+        // Reset view
+        foodEmoji.style.display = 'none';
+        animalEmoji.style.display = 'none';
+        foodText.style.visibility = 'visible';
+        animalText.style.visibility = 'visible';
         container.classList.remove('disabled');
         updateX();
     }, 1500);
