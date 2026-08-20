@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thesis Progress Tracker</title>
+    <style>
+        body {
+            font-family: monospace, sans-serif;
+            background-color: #111;
+            color: #eee;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            text-align: center;
+            max-width: 800px;
+            padding: 20px;
+            z-index: 10;
+        }
+
+        #guilt-trip {
+            font-size: 28px;
+            font-weight: bold;
+            color: #ff4444;
+            margin-bottom: 40px;
+            min-height: 80px;
+        }
+
+        #countdown {
+            font-size: 48px;
+            font-variant-numeric: tabular-nums;
+            margin-bottom: 40px;
+            letter-spacing: 2px;
+        }
+
+        .progress-container {
+            width: 100%;
+            background-color: #333;
+            border: 2px solid #555;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            width: 1.2%; /* Stuck permanently */
+            height: 30px;
+            background-color: #2563eb;
+            transition: width 0.5s;
+        }
+
+        .progress-label {
+            font-size: 16px;
+            color: #888;
+            margin-bottom: 60px;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            position: relative;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 18px;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #write-btn {
+            background-color: #4CAF50;
+            color: white;
+            z-index: 5;
+        }
+
+        #write-btn:active {
+            background-color: #45a049;
+        }
+
+        #procrastinate-btn {
+            background-color: #ff4444;
+            color: white;
+            transition: top 0.2s, left 0.2s;
+            z-index: 20;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- 1. Academic Guilt-Trip Generator -->
+        <div id="guilt-trip">Loading critique...</div>
+
+        <!-- 2. Live Millisecond Countdown -->
+        <div id="countdown">000:00:00:00.000</div>
+
+        <!-- 3. The Unfillable Progress Bar -->
+        <div class="progress-container">
+            <div class="progress-bar"></div>
+        </div>
+        <div class="progress-label">Thesis Completion: 1.2% (No progress detected in 72 hours)</div>
+
+        <!-- 4. The Buttons -->
+        <div class="button-container">
+            <button id="write-btn" onclick="alert('Good choice. Close this tab and open Word.')">Write Your Thesis</button>
+            <button id="procrastinate-btn">Click to Procrastinate</button>
+        </div>
+    </div>
+
+    <script>
+        // --- Guilt-Trip Generator ---
+        const quotes = [
+            "Your PI is waiting.",
+            "Are your figures formatted yet?",
+            "That literature review won't write itself.",
+            "Reviewer 2 is already formulating their critique.",
+            "EndNote crashed again, didn't it?",
+            "Marmosets don't care about your writer's block.",
+            "Is the discussion section supposed to be blank?",
+            "You can't cite Wikipedia in your defense."
+        ];
+        document.getElementById('guilt-trip').innerText = quotes[Math.floor(Math.random() * quotes.length)];
+
+        // --- Live Millisecond Countdown ---
+        const targetDate = new Date("2027-03-31T00:00:00").getTime();
+        
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            if (distance < 0) {
+                document.getElementById("countdown").innerText = "DEADLINE PASSED";
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));Here is the complete HTML file. It combines all four ideas into a single, clean, and aggressively annoying webpage. 
+
+Save this code as `index.html` and upload it to your domain. 
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Your S**t Together, Nicolas</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            text-align: center;
+            margin: 0;
+            padding: 40px 20px;
+            overflow-x: hidden;
+        }
+        #guilt-trip {
+            font-size: 2.2em;
+            font-weight: bold;
+            color: #d9534f;
+            min-height: 2.5em;
+            margin-bottom: 20px;
+        }
+        #countdown {
+            font-family: monospace;
+            font-size: 3.5em;
+            background: #000;
+            color: #fff;
+            padding: 20px 40px;
+            border-radius: 8px;
+            display: inline-block;
+            margin-bottom: 40px;
+            border: 4px solid red;
+        }
+        .progress-label {
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+        .progress-container {
+            width: 60%;
+            max-width: 800px;
+            margin: 0 auto 40px auto;
+            background-color: #ddd;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid #ccc;
+        }
+        .progress-bar {
+            width: 1.4%;
+            height: 30px;
+            background-color: #d9534f;
+            text-align: right;
+            line-height: 30px;
+            color: white;
+            font-weight: bold;
+            padding-right: 5px;
+            box-sizing: border-box;
+        }
+        .interaction-area {
+            position: relative;
+            height: 40vh;
+            margin-top: 20px;
+        }
+        button {
+            padding: 15px 30px;
+            font-size: 1.2em;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        #write-btn {
+            background-color: #2563eb;
+            color: white;
+            position: relative;
+            z-index: 10;
+        }
+        #write-btn:hover {
+            background-color: #1d4ed8;
+        }
+        #procrastinate-btn {
+            background-color: #f0ad4e;
+            color: white;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+<body>
+
+    <div id="guilt-trip">Loading...</div>
+
+    <div id="countdown">000d : 00h : 00m : 00s : 000ms</div>
+
+    <div class="progress-label">Thesis Completion Progress:</div>
+    <div class="progress-container">
+        <div class="progress-bar">1.4%</div>
+    </div>
+
+    <div class="interaction-area" id="interaction-area">
+        <button id="write-btn" onclick="alert('Good choice. Close this tab and open your manuscript.')">Write Your Thesis</button>
+        <button id="procrastinate-btn">Click to Procrastinate</button>
+    </div>
+
+    <script>
+        // 1. Academic Guilt-Trip Generator
+        const guiltQuotes = [
+            "Your PI is waiting.",
+            "Are your figures formatted yet?",
+            "That literature review won't write itself.",
+            "Every second you waste is a second closer to a defense disaster.",
+            "Shouldn't you be running stats on that dataset?",
+            "Your reference manager is a mess and you know it.",
+            "Another coffee won't write the discussion section."
+        ];
+        
+        const guiltEl = document.getElementById("guilt-trip");
+        function updateGuilt() {
+            const randIndex = Math.floor(Math.random() * guiltQuotes.length);
+            guiltEl.innerText = guiltQuotes[randIndex];
+        }
+        updateGuilt(); // initial call
+        setInterval(updateGuilt, 5000); // Change text every 5 seconds
+
+        // 2. Live Millisecond Countdown
+        const targetDate = new Date("2027-03-31T00:00:00").getTime();
+        const countdownEl = document.getElementById("countdown");
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const diff = targetDate - now;
+
+            if (diff < 0) {
+                countdownEl.innerText = "DEADLINE PASSED.";
+                return;
+            }
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            const milliseconds = Math.floor((diff % 1000));
+
+            countdownEl.innerText = 
+                String(days).padStart(3, '0') + "d : " + 
+                String(hours).padStart(2, '0') + "h : " + 
+                String(minutes).padStart(2, '0') + "m : " + 
+                String(seconds).padStart(2, '0') + "s : " + 
+                String(milliseconds).padStart(3, '0') + "ms";
+        }
+        setInterval(updateCountdown, 10);
+
+        // 3. Evasive Procrastination Button
+        const procrastinateBtn = document.getElementById("procrastinate-btn");
+        const area = document.getElementById("interaction-area");
+
+        procrastinateBtn.addEventListener("mouseover", () => {
+            const areaRect = area.getBoundingClientRect();
+            const btnRect = procrastinateBtn.getBoundingClientRect();
+            
+            // Calculate boundaries to keep button inside the interaction area
+            const maxX = areaRect.width - btnRect.width;
+            const maxY = areaRect.height - btnRect.height;
+            
+            const randomX = Math.floor(Math.random() * maxX);
+            const randomY = Math.floor(Math.random() * maxY);
+            
+            procrastinateBtn.style.left = randomX + "px";
+            procrastinateBtn.style.top = randomY + "px";
+            procrastinateBtn.style.transform = "none"; // Remove centering offset once it starts moving
+        });
+    </script>
+
+</body>
+</html>
