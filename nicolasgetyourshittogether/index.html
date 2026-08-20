@@ -3,159 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thesis Progress Tracker</title>
-    <style>
-        body {
-            font-family: monospace, sans-serif;
-            background-color: #111;
-            color: #eee;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            margin: 0;
-            overflow-x: hidden;
-        }
-        
-        .container {
-            text-align: center;
-            max-width: 800px;
-            padding: 20px;
-            z-index: 10;
-        }
-
-        #guilt-trip {
-            font-size: 28px;
-            font-weight: bold;
-            color: #ff4444;
-            margin-bottom: 40px;
-            min-height: 80px;
-        }
-
-        #countdown {
-            font-size: 48px;
-            font-variant-numeric: tabular-nums;
-            margin-bottom: 40px;
-            letter-spacing: 2px;
-        }
-
-        .progress-container {
-            width: 100%;
-            background-color: #333;
-            border: 2px solid #555;
-            border-radius: 10px;
-            margin-bottom: 10px;
-            overflow: hidden;
-        }
-
-        .progress-bar {
-            width: 1.2%; /* Stuck permanently */
-            height: 30px;
-            background-color: #2563eb;
-            transition: width 0.5s;
-        }
-
-        .progress-label {
-            font-size: 16px;
-            color: #888;
-            margin-bottom: 60px;
-        }
-
-        .button-container {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            position: relative;
-        }
-
-        button {
-            padding: 15px 30px;
-            font-size: 18px;
-            font-weight: bold;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        #write-btn {
-            background-color: #4CAF50;
-            color: white;
-            z-index: 5;
-        }
-
-        #write-btn:active {
-            background-color: #45a049;
-        }
-
-        #procrastinate-btn {
-            background-color: #ff4444;
-            color: white;
-            transition: top 0.2s, left 0.2s;
-            z-index: 20;
-        }
-    </style>
-</head>
-<body>
-
-    <div class="container">
-        <!-- 1. Academic Guilt-Trip Generator -->
-        <div id="guilt-trip">Loading critique...</div>
-
-        <!-- 2. Live Millisecond Countdown -->
-        <div id="countdown">000:00:00:00.000</div>
-
-        <!-- 3. The Unfillable Progress Bar -->
-        <div class="progress-container">
-            <div class="progress-bar"></div>
-        </div>
-        <div class="progress-label">Thesis Completion: 1.2% (No progress detected in 72 hours)</div>
-
-        <!-- 4. The Buttons -->
-        <div class="button-container">
-            <button id="write-btn" onclick="alert('Good choice. Close this tab and open Word.')">Write Your Thesis</button>
-            <button id="procrastinate-btn">Click to Procrastinate</button>
-        </div>
-    </div>
-
-    <script>
-        // --- Guilt-Trip Generator ---
-        const quotes = [
-            "Your PI is waiting.",
-            "Are your figures formatted yet?",
-            "That literature review won't write itself.",
-            "Reviewer 2 is already formulating their critique.",
-            "EndNote crashed again, didn't it?",
-            "Marmosets don't care about your writer's block.",
-            "Is the discussion section supposed to be blank?",
-            "You can't cite Wikipedia in your defense."
-        ];
-        document.getElementById('guilt-trip').innerText = quotes[Math.floor(Math.random() * quotes.length)];
-
-        // --- Live Millisecond Countdown ---
-        const targetDate = new Date("2027-03-31T00:00:00").getTime();
-        
-        function updateCountdown() {
-            const now = new Date().getTime();
-            const distance = targetDate - now;
-
-            if (distance < 0) {
-                document.getElementById("countdown").innerText = "DEADLINE PASSED";
-                return;
-            }
-
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));Here is the complete HTML file. It combines all four ideas into a single, clean, and aggressively annoying webpage. 
-
-Save this code as `index.html` and upload it to your domain. 
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Get Your S**t Together, Nicolas</title>
     <style>
         body {
@@ -214,6 +61,8 @@ Save this code as `index.html` and upload it to your domain.
             position: relative;
             height: 40vh;
             margin-top: 20px;
+            border: 2px dashed #ccc; /* Helps you see the boundary where the button can teleport */
+            border-radius: 10px;
         }
         button {
             padding: 15px 30px;
@@ -226,7 +75,10 @@ Save this code as `index.html` and upload it to your domain.
         #write-btn {
             background-color: #2563eb;
             color: white;
-            position: relative;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             z-index: 10;
         }
         #write-btn:hover {
@@ -236,15 +88,16 @@ Save this code as `index.html` and upload it to your domain.
             background-color: #f0ad4e;
             color: white;
             position: absolute;
-            top: 50%;
+            top: 65%;
             left: 50%;
             transform: translate(-50%, -50%);
+            transition: top 0.1s, left 0.1s;
         }
     </style>
 </head>
 <body>
 
-    <div id="guilt-trip">Loading...</div>
+    <div id="guilt-trip">Loading critique...</div>
 
     <div id="countdown">000d : 00h : 00m : 00s : 000ms</div>
 
@@ -254,7 +107,7 @@ Save this code as `index.html` and upload it to your domain.
     </div>
 
     <div class="interaction-area" id="interaction-area">
-        <button id="write-btn" onclick="alert('Good choice. Close this tab and open your manuscript.')">Write Your Thesis</button>
+        <button id="write-btn" onclick="alert('Good choice. Close this tab and open Word.')">Write Your Thesis</button>
         <button id="procrastinate-btn">Click to Procrastinate</button>
     </div>
 
@@ -310,20 +163,19 @@ Save this code as `index.html` and upload it to your domain.
         const procrastinateBtn = document.getElementById("procrastinate-btn");
         const area = document.getElementById("interaction-area");
 
-        procrastinateBtn.addEventListener("mouseover", () => {
+        procrastinateBtn.addEventListener("mouseenter", () => {
             const areaRect = area.getBoundingClientRect();
-            const btnRect = procrastinateBtn.getBoundingClientRect();
             
-            // Calculate boundaries to keep button inside the interaction area
-            const maxX = areaRect.width - btnRect.width;
-            const maxY = areaRect.height - btnRect.height;
+            // Calculate maximum allowed X and Y to keep button inside the dashed box
+            const maxX = areaRect.width - procrastinateBtn.offsetWidth;
+            const maxY = areaRect.height - procrastinateBtn.offsetHeight;
             
             const randomX = Math.floor(Math.random() * maxX);
             const randomY = Math.floor(Math.random() * maxY);
             
             procrastinateBtn.style.left = randomX + "px";
             procrastinateBtn.style.top = randomY + "px";
-            procrastinateBtn.style.transform = "none"; // Remove centering offset once it starts moving
+            procrastinateBtn.style.transform = "none"; // Disables the initial -50% centering offset
         });
     </script>
 
