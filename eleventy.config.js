@@ -2,7 +2,7 @@
 const fs = require("node:fs");
 const path = require("node:path");
 
-const SKIP = new Set([".git", ".github", ".claude", "node_modules", "_site", "_includes", "_data",
+const SKIP = new Set([".git", "_drafts", ".github", ".claude", "node_modules", "_site", "_includes", "_data",
   "eleventy.config.js", "package.json", "package-lock.json", "netlify.toml", ".gitignore", "README.md"]);
 
 function staticFiles(dir = ".") {
