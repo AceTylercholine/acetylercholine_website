@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Your S**t Together, Nicolas</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            text-align: center;
+            margin: 0;
+            padding: 40px 20px;
+            overflow-x: hidden;
+        }
+        #guilt-trip {
+            font-size: 2.2em;
+            font-weight: bold;
+            color: #d9534f;
+            min-height: 2.5em;
+            margin-bottom: 20px;
+        }
+        #countdown {
+            font-family: monospace;
+            font-size: 3.5em;
+            background: #000;
+            color: #fff;
+            padding: 20px 40px;
+            border-radius: 8px;
+            display: inline-block;
+            margin-bottom: 40px;
+            border: 4px solid red;
+        }
+        .progress-label {
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+        .progress-container {
+            width: 60%;
+            max-width: 800px;
+            margin: 0 auto 40px auto;
+            background-color: #ddd;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid #ccc;
+        }
+        .progress-bar {
+            width: 1.4%;
+            height: 30px;
+            background-color: #d9534f;
+            text-align: right;
+            line-height: 30px;
+            color: white;
+            font-weight: bold;
+            padding-right: 5px;
+            box-sizing: border-box;
+        }
+        .interaction-area {
+            position: relative;
+            height: 40vh;
+            margin-top: 20px;
+            border: 2px dashed #ccc; /* Helps you see the boundary where the button can teleport */
+            border-radius: 10px;
+        }
+        button {
+            padding: 15px 30px;
+            font-size: 1.2em;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        #write-btn {
+            background-color: #2563eb;
+            color: white;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+        }
+        #write-btn:hover {
+            background-color: #1d4ed8;
+        }
+        #procrastinate-btn {
+            background-color: #f0ad4e;
+            color: white;
+            position: absolute;
+            top: 65%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            transition: top 0.1s, left 0.1s;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="guilt-trip">Loading critique...</div>
+
+    <div id="countdown">000d : 00h : 00m : 00s : 000ms</div>
+
+    <div class="progress-label">Thesis Completion Progress:</div>
+    <div class="progress-container">
+        <div class="progress-bar">1.4%</div>
+    </div>
+
+    <div class="interaction-area" id="interaction-area">
+        <button id="write-btn" onclick="alert('Good choice. Close this tab and open Word.')">Write Your Thesis</button>
+        <button id="procrastinate-btn">Click to Procrastinate</button>
+    </div>
+
+    <script>
+        // 1. Academic Guilt-Trip Generator
+        const guiltQuotes = [
+            "Hans is waiting.",
+            "Are your figures formatted yet?",
+            "That introduction won't write itself.",
+            "Every second you waste is a second closer to a defense disaster.",
+            "Shouldn't you be running stats on that dataset?",
+            "Your reference manager is a mess and you know it.",
+            "Another coffee won't write the discussion section.",
+			"Changing the line spacing to 1.15 doesn't count as writing.",
+			"Your bibliography has fewer entries than your Netflix watch history.",
+			"That flashing text cursor is actively judging you.",
+			"Renaming the file to 'Thesis_FINAL_v4.docx' doesn't make it done.",
+			"Is 'Chapter 1' still just a title on a blank page?",
+			"You know Word has a word count feature, right? It says zero.",
+			"Your committee is already practicing their disappointed sighs.",
+			"Do you really want to explain this gap in progress at the next lab meeting?",
+			"Future Nicolas is currently weeping.",
+			"Every YouTube video you watch delays your graduation by a week.",
+			"The job market is waiting, Nicolas. And it is unforgiving.",
+			"The next 3D model you're working on feels like progress, but it's not.",
+			"Do you want me to tell Ben you asked for help?",
+			"Stop listening to Mumford & Sons and start reading Lee Miller papers."
+        ];
+        
+        const guiltEl = document.getElementById("guilt-trip");
+        function updateGuilt() {
+            const randIndex = Math.floor(Math.random() * guiltQuotes.length);
+            guiltEl.innerText = guiltQuotes[randIndex];
+        }
+        updateGuilt(); // initial call
+        setInterval(updateGuilt, 5000); // Change text every 5 seconds
+
+        // 2. Live Millisecond Countdown
+        const targetDate = new Date("2027-03-31T00:00:00").getTime();
+        const countdownEl = document.getElementById("countdown");
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const diff = targetDate - now;
+
+            if (diff < 0) {
+                countdownEl.innerText = "DEADLINE PASSED.";
+                return;
+            }
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            const milliseconds = Math.floor((diff % 1000));
+
+            countdownEl.innerText = 
+                String(days).padStart(3, '0') + "d : " + 
+                String(hours).padStart(2, '0') + "h : " + 
+                String(minutes).padStart(2, '0') + "m : " + 
+                String(seconds).padStart(2, '0') + "s : " + 
+                String(milliseconds).padStart(3, '0') + "ms";
+        }
+        setInterval(updateCountdown, 10);
+
+        // 3. Evasive Procrastination Button
+        const procrastinateBtn = document.getElementById("procrastinate-btn");
+        const area = document.getElementById("interaction-area");
+
+        procrastinateBtn.addEventListener("mouseenter", () => {
+            const areaRect = area.getBoundingClientRect();
+            
+            // Calculate maximum allowed X and Y to keep button inside the dashed box
+            const maxX = areaRect.width - procrastinateBtn.offsetWidth;
+            const maxY = areaRect.height - procrastinateBtn.offsetHeight;
+            
+            const randomX = Math.floor(Math.random() * maxX);
+            const randomY = Math.floor(Math.random() * maxY);
+            
+            procrastinateBtn.style.left = randomX + "px";
+            procrastinateBtn.style.top = randomY + "px";
+            procrastinateBtn.style.transform = "none"; // Disables the initial -50% centering offset
+        });
+    </script>
+
+</body>
+</html>

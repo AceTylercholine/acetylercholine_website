@@ -1,6 +1,7 @@
 {
   "version": "0.0.1",
   "configurations": [
-    { "name": "site", "runtimeExecutable": "npx", "runtimeArgs": ["eleventy", "--serve", "--port=8080"], "port": 8080 }
+    { "name": "site", "runtimeExecutable": "npx", "runtimeArgs": ["eleventy", "--serve", "--port=8080"], "port": 8080 },
+    { "name": "nicolas-drafts", "runtimeExecutable": "python", "runtimeArgs": ["-m", "http.server", "8091", "--directory", "_drafts/nicolas-redesign"], "port": 8091 }
   ]
 }
